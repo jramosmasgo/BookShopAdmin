@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileService } from 'src/app/core/services/file.service';
+import { Validatedata } from 'src/app/shared/helper/validate-data';
 import { Author } from 'src/app/shared/models/author/author';
 
 @Component({
@@ -31,8 +32,7 @@ export class AuthorComponent implements OnInit {
 
   // Validacion de campos de formulario
   validateData(campo: string): boolean {
-    return this.formCreateAuthor.controls[campo].errors &&
-      this.formCreateAuthor.controls[campo].touched ? true : false;
+    return new Validatedata().ValidateField(this.formCreateAuthor, campo);
   }
 
   // Agregar Imagen a Interface

@@ -22,20 +22,29 @@
     background: red;
     color: white;
     transition: background 0.2s ease-in;
+    border: 1px solid red;
+
     &:hover {
       background: transparent;
       color: red;
-      outline: 1px solid red;
+      border-color: red;
     }
   }
 
   &-alert {
     background: #ffba23;
     color: white;
+    border: 1px solid #ffba23;
+
     &:hover {
       background: transparent;
       color: #ffba23;
-      outline: 1px solid #ffba23;
+      border-color: #ffba23;
     }
   }
+}
+
+.btn-medium {
+  font-size: 11px;
+  padding: none;
 }
