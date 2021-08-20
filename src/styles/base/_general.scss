@@ -1,0 +1,61 @@
+.title-page {
+  h2 {
+    color: $primary;
+  }
+  &-title {
+    width: 100%;
+    height: 2px;
+    background: $primary;
+    margin-bottom: 20px;
+  }
+}
+
+.flex {
+  &__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__evenly {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hide__phone {
+  @include modified-content(phone) {
+    display: none;
+  }
+}
+
+.hide__tablet {
+  @include modified-content(tablet) {
+    display: none;
+  }
+}
+
+.hide__desktop {
+  @include modified-content-desktop(tablet) {
+    display: none;
+  }
+}

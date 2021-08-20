@@ -1,0 +1,12 @@
+.home {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
+  &__lista {
+    grid-column: 1/7;
+  }
+
+  &__form {
+    grid-column: 7/11;
+  }
+}

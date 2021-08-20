@@ -1,0 +1,12 @@
+.author {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
+  &__lista {
+    grid-column: 6/11;
+  }
+
+  &__form {
+    grid-column: 1/6;
+  }
+}

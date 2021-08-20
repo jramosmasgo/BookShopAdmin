@@ -1,0 +1,57 @@
+<div class="title-page">
+    <h2>Autores</h2>
+    <div class="title-page-title"></div>
+</div>
+<div class="home author">
+    <div class="card author__form">
+        <div class="card__title ">
+            <h3>Agregar Nuevo Autor</h3>
+        </div>
+        <div class="card__body">
+            <form class="form" (ngSubmit)="submitForm()" [formGroup]="formCreateAuthor">
+                <div class="input" [ngClass]="{'input-error' :validateData('name')} ">
+                    <label for="" class="input__title">Nombre</label>
+                    <input type="text" class="input__input" formControlName="name">
+                    <p class="input__error-message" *ngIf="validateData('name')">
+                        Campo Requerido de 3 a 30 caracteres
+                    </p>
+                </div>
+                <div class="input" [ngClass]="{'input-error' :validateData('gender')}">
+                    <label for="" class="input__title">Genero</label>
+                    <select formControlName="gender" class="input__input" name="" id="">
+                        <option value="2">Seleccione su genero</option>
+                        <option value="1">Masculino</option>
+                        <option value="0">Femenino</option>
+                    </select>
+                    <p class="input__error-message" *ngIf="validateData('gender')">
+                        Campo Requerido seleccione un genero
+                    </p>
+                </div>
+                <div class="input" [ngClass]="{'input-error' :validateData('bibliography')}">
+                    <label for="" class="input__title">BiBliografia</label>
+                    <textarea class="input__input" name="" id="" cols="30" formControlName="bibliography"></textarea>
+                    <p class="input__error-message" *ngIf="validateData('bibliography')">
+                        Campo Requerido
+                    </p>
+                </div>
+                <div class="input" [ngClass]="{'input-error' :validateData('datebirth')}">
+                    <label for="" class="input__title">Fecha de Nacimiento</label>
+                    <input type="date" class="input__input" formControlName="datebirth">
+                    <p class="input__error-message" *ngIf="validateData('datebirth')">
+                        Seleccione una fecha valida
+                    </p>
+                </div>
+                <div class="input">
+                    <input #inputFile type="file" name="" id="" (change)="convertImage($event)" style="display: none;">
+                    <button type="button" (click)="inputFile.click()" class="button button-alert"><i
+                            class="fas fa-upload"></i> Subir
+                        Foto</button>
+                </div>
+                <div class="form__buttons">
+                    <button type="submit" class="button button-primary form__buttons-right"><i class="far fa-save"></i>
+                        Guardar Datos</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background: $primary;
+  transition: all ease-in 0.5s;
+
+  @include modified-content(tablet) {
+    position: absolute;
+    padding-top: 40px;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    z-index: 1;
+  }
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: $white;
+    font-size: 25px;
+  }
+
+  &__logo {
+    width: 100%;
+    height: 100px;
+    color: $white;
+    margin-bottom: 50px;
+
+    &-image {
+      height: 60%;
+    }
+
+    &-title {
+      width: 60%;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+
+    &-title {
+      color: $secondary;
+      position: relative;
+      margin-left: 20px;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 90%;
+        height: 2px;
+        background: $secondary;
+        bottom: -5px;
+      }
+    }
+
+    ul {
+      margin-top: 20px;
+    }
+
+    a {
+      width: 90%;
+      display: block;
+      padding: 8px 0px;
+      padding-left: 40px;
+      color: $skyblue;
+      margin: 0 auto;
+      transition: all ease 0.5s;
+
+      &:hover {
+        width: 100%;
+        background: $skyblue;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.show-sidebar {
+  position: absolute;
+  z-index: 1;
+  visibility: visible;
+  opacity: 1;
+  width: 30%;
+
+  @include modified-content(phone) {
+    width: 70%;
+  }
+}

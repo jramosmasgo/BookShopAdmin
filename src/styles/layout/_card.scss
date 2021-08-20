@@ -1,0 +1,22 @@
+.card {
+  height: max-content;
+  border: 1px solid $skyblue;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px $skyblue;
+  background: #fff;
+
+  &__title {
+    color: $secondary;
+    width: 100%;
+    height: 45px;
+    padding: 5px 15px;
+    border-bottom: 1px solid $skyblue;
+    font-size: 15px;
+    line-height: 35px;
+  }
+
+  &__body {
+    padding: 5px 10px;
+  }
+}

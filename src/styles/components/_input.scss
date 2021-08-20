@@ -1,0 +1,48 @@
+.input {
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+
+  &__title {
+    display: block;
+    height: max-content;
+    font-size: 13px;
+  }
+
+  &__input {
+    margin-top: 5px;
+    padding: 5px 10px;
+  }
+
+  &__error-message {
+    color: red;
+    font-size: 10px;
+    margin-top: 3px;
+  }
+
+  textarea {
+    resize: none;
+    height: 200px;
+  }
+
+  &-error {
+    label {
+      color: red;
+    }
+
+    select {
+      border-color: red;
+      color: red;
+    }
+
+    textarea {
+      border: 1px solid red;
+    }
+
+    input {
+      border-color: red;
+    }
+  }
+}

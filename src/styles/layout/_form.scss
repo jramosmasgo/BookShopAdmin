@@ -1,0 +1,21 @@
+.form {
+  &__buttons {
+    margin: 10px auto;
+    height: min-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    &-left {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    &-center {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+    &-right {
+      grid-column: 3/4;
+      grid-row: 1/2;
+    }
+  }
+}

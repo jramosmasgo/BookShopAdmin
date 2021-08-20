@@ -1,0 +1,11 @@
+@mixin modified-content($size) {
+  @media (max-width: map-get($breakpoints, $size )) {
+    @content;
+  }
+}
+
+@mixin modified-content-desktop($size) {
+  @media (min-width: map-get($breakpoints, $size )) {
+    @content;
+  }
+}

@@ -1,0 +1,55 @@
+<div class="title-page">
+    <h2>Categorias</h2>
+    <div class="title-page-title"></div>
+</div>
+<div class="home">
+    <div class="card home__lista">
+        <div class="card__title">
+            <h3>Lista de categorias</h3>
+        </div>
+        <div class="card__body">
+            <table class="table">
+                <thead class="table__head">
+                    <tr>
+                        <th>Nro.</th>
+                        <th>Nombres de categoria</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table__body">
+                    <tr *ngFor="let category of categories;let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{category.name}}</td>
+                        <td>
+                            <button class="button button-alert"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="button button-danger"><i class="fas fa-trash"></i> Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card home__form">
+        <div class="card__title">
+            <h3>Agregar Categoria</h3>
+        </div>
+        <div class="card__body">
+            <form class="form" (ngSubmit)="submitForm()" [formGroup]="formCreateCategory">
+                <div class="input">
+                    <label for="" class="input__title">Nombre</label>
+                    <input formControlName="name" type="text" class="input__input"
+                        placeholder="Ingrese el nombre de la categoria ....">
+                </div>
+                <div class="form__buttons">
+                    <button type="submit" class="button button-primary form__buttons-right"><i class="far fa-save"></i>
+                        Guardar</button>
+                    <!-- <button class="button button-danger form__buttons-right"><i
+                            class="fas fa-times-circle"></i>
+                        Guardar</button> -->
+                    <!-- <button class="button button-alert"><i class="fas fa-exclamation-triangle"></i>
+                        Actualizar</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
