@@ -1,7 +1,45 @@
 .table {
-  width: 95%;
   border-collapse: collapse;
   margin: 10px auto;
+  width: 100%;
+
+  @include modified-content(phone) {
+    width: max-content;
+  }
+
+  &__loading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__pagination {
+    display: flex;
+
+    &-number {
+      width: 20px;
+      height: 20px;
+      border-radius: none;
+      border: 1px solid white;
+      background: $primary;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: white;
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+
+    &-active {
+      background: white;
+      border-color: $primary;
+      color: $primary;
+    }
+  }
 
   &__head {
     border-collapse: collapse;
@@ -13,6 +51,7 @@
     tr {
       cursor: pointer;
       transition: background 0.3s ease;
+      flex: 1 0 10em;
 
       &:hover {
         background: $white;
@@ -22,6 +61,7 @@
     td {
       text-align: center;
       font-size: 14px;
+      flex: 1 0 15px;
 
       img {
         height: 50px;

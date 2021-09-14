@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlServie: 'http://elvirrey.somee.com/api/backoffice/'
+  urlServie: 'http://elvirreytest.somee.com/api/backoffice/'
 };
 
 /*

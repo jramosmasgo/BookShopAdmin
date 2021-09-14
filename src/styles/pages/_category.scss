@@ -1,0 +1,22 @@
+.category {
+  display: grid;
+  grid-template-columns: repeat(1fr, 10);
+
+  &__list {
+    grid-column: 1/6;
+    height: min-content;
+    @include modified-content(phone) {
+      grid-column: 1/11;
+      grid-row: 1/2;
+    }
+  }
+
+  &__form {
+    grid-column: 6/11;
+    height: min-content;
+    @include modified-content(phone) {
+      grid-column: 1/11;
+      grid-row: 2/3;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<form action="" class="auth__container" (ngSubmit)="login()" [formGroup]="formLogin">
+    <div class="auth__container-header">
+        <img src="assets/images/library-icon.jpg" alt="" class="auth__container-logo">
+        <h2 class="auth__container-title">Administrador Libreria</h2>
+    </div>
+    <div class="input">
+        <label for="" class="input__title">Email:</label>
+        <input type="text" class="input__input" formControlName="email" placeholder="Ingrese su correo">
+    </div>
+    <div class="input">
+        <label for="" class="input__title">Password</label>
+        <input type="password" class="input__input" formControlName="password" placeholder="Ingrese su password">
+    </div>
+    <div class="input">
+        <button type="submit" class="button button-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+    </div>
+</form>

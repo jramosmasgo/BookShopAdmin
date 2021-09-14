@@ -1,64 +1,66 @@
 <div class="title-page">
     <h2>Categorias</h2>
     <div class="title-page-title"></div>
-</div>
-<div class="home">
-    <div class="card home__lista">
-        <div class="card__title">
-            <h3>Lista de categorias</h3>
-        </div>
-        <div class="card__body">
-            <table class="table">
-                <thead class="table__head">
-                    <tr>
-                        <th>Nro.</th>
-                        <th>Nombres de categoria</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody class="table__body">
-                    <tr *ngFor="let category of categories;let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{category.name}}</td>
-                        <td>
-                            <button (click)="setFormToUpdate(category)" class="button button-alert btn-medium"><i
-                                    class="fas fa-edit"></i> Editar</button>
-                            <button (click)="deleteCategory(category)" class="button button-danger btn-medium"><i
-                                    class="fas fa-trash"></i>
-                                Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card home__form">
-        <div class="card__title">
-            <h3>{{ editCategory ? 'Editar Categoria' : 'Agregar nueva Categoria' }}</h3>
-        </div>
-        <div class="card__body">
-            <form class="form" (ngSubmit)="submitForm()" [formGroup]="formCreateCategory">
-                <div class="input">
-                    <label for="" class="input__title">Nombre</label>
-                    <input formControlName="name" type="text" class="input__input"
-                        placeholder="Ingrese el nombre de la categoria ....">
-                    <p *ngIf="validateData('name')" class="input__error-message">
-                        El nombre de la categoria es nesesario
-                    </p>
+    <div class="category">
+        <div class="card category__list">
+            <div class="card__title">
+                <h3>Lista de categorias</h3>
+            </div>
+            <div class="card__body">
+                <table class="table">
+                    <thead class="table__head">
+                        <tr>
+                            <th>Nro.</th>
+                            <th>Nombres de categoria</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__body">
+                        <tr *ngFor="let category of categories;let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{category.name}}</td>
+                            <td>
+                                <button (click)="setFormToUpdate(category)" class="button button-alert btn-medium"><i
+                                        class="fas fa-edit"></i> Editar</button>
+                                <button (click)="deleteCategory(category)" class="button button-danger btn-medium"><i
+                                        class="fas fa-trash"></i>
+                                    Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loadCategories" class="table__loading">
+                    <img src="assets/images/loading.svg" alt="" srcset="">
                 </div>
-                <div class="form__buttons">
-                    <button *ngIf="!editCategory" type="submit" class="button button-primary form__buttons-right"><i
-                            class="far fa-save"></i>
-                        Guardar</button>
-                    <button *ngIf="editCategory" (click)="setFormCreate()"
-                        class="button button-danger form__buttons-center"><i class="fas fa-times-circle"></i>
-                        Cancelar</button>
-                    <button type="button" (click)="updateCategory()" *ngIf="editCategory"
-                        class="button button-alert form__buttons-right"><i class="fas fa-exclamation-triangle"></i>
-                        Actualizar</button>
-
-                </div>
-            </form>
+            </div>
+        </div>
+        <div class="card category__form">
+            <div class="card__title">
+                <h3>{{ editCategory ? 'Editar Categoria' : 'Agregar nueva Categoria' }}</h3>
+            </div>
+            <div class="card__body">
+                <form class="form" (ngSubmit)="submitForm()" [formGroup]="formCreateCategory">
+                    <div class="input">
+                        <label for="" class="input__title">Nombre</label>
+                        <input formControlName="name" type="text" class="input__input"
+                            placeholder="Ingrese el nombre de la categoria ....">
+                        <p *ngIf="validateData('name')" class="input__error-message">
+                            El nombre de la categoria es nesesario
+                        </p>
+                    </div>
+                    <div class="form__buttons">
+                        <button *ngIf="!editCategory" type="submit" class="button button-primary form__buttons-right"><i
+                                class="far fa-save"></i>
+                            Guardar</button>
+                        <button *ngIf="editCategory" (click)="setFormCreate()"
+                            class="button button-danger form__buttons-center"><i class="fas fa-times-circle"></i>
+                            Cancelar</button>
+                        <button type="button" (click)="updateCategory()" *ngIf="editCategory"
+                            class="button button-alert form__buttons-right"><i class="fas fa-exclamation-triangle"></i>
+                            Actualizar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

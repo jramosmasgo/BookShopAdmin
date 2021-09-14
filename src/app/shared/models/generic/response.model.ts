@@ -1,6 +1,6 @@
 export interface IResponseServer<T> {
     data: T;
-    errors?: boolean;
+    errors?: string[];
     message?: string;
     succeeded: boolean;
 }

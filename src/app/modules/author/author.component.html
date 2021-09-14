@@ -5,7 +5,7 @@
 <div class="home author">
     <div class="card author__form">
         <div class="card__title ">
-            <h3>Agregar Nuevo Autor</h3>
+            <h3>{{ !update ? 'Agregar nuevo autor' : 'Actualizar Datos de Autor' }}</h3>
         </div>
         <div class="card__body">
             <form class="form" (ngSubmit)="submitForm()" [formGroup]="formCreateAuthor">
@@ -19,9 +19,9 @@
                 <div class="input" [ngClass]="{'input-error' :validateData('gender')}">
                     <label for="" class="input__title">Genero</label>
                     <select formControlName="gender" class="input__input" name="" id="">
-                        <option value="2">Seleccione su genero</option>
-                        <option value="1">Masculino</option>
-                        <option value="0">Femenino</option>
+                        <option value="X">Seleccione su genero</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
                     </select>
                     <p class="input__error-message" *ngIf="validateData('gender')">
                         Campo Requerido seleccione un genero
@@ -43,15 +43,64 @@
                 </div>
                 <div class="input">
                     <input #inputFile type="file" name="" id="" (change)="convertImage($event)" style="display: none;">
-                    <button type="button" (click)="inputFile.click()" class="button button-alert"><i
-                            class="fas fa-upload"></i> Subir
-                        Foto</button>
+                    <button *ngIf="photoUpload.length == 0" type="button" (click)="inputFile.click()"
+                        class="button button-alert"><i class="fas fa-upload"></i> Subir Foto</button>
+                    <div *ngIf="photoUpload.length > 0" class="form__btn">
+                        <button (click)="showImageUpload()" type="button"
+                            class="button button-primary form__btn-image"><i class="far fa-eye"></i>
+                            Ver Foto
+                            <div class="form__image-float-hide" #imageToUpload>
+                                <img [src]="photoUpload.length == 0 ? 'assets/images/image-not-found.png' : photoUpload"
+                                    alt="Imagen de autor">
+                                <button type="button"><i class="fas fa-times"></i></button>
+                            </div>
+                        </button>
+                        <button class="button button-danger"><i class="fas fa-trash"></i>
+                            Remover Foto</button>
+                    </div>
                 </div>
                 <div class="form__buttons">
                     <button type="submit" class="button button-primary form__buttons-right"><i class="far fa-save"></i>
                         Guardar Datos</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="card author__list">
+        <div class="card__title">
+            <h3>Lista de Autores</h3>
+        </div>
+        <div class="card__body">
+            <table class="table">
+                <thead class="table__head">
+                    <tr>
+                        <th>Nro.</th>
+                        <th>Nombre</th>
+                        <th>Fotografia</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table__body">
+                    <tr *ngFor="let author of authors;let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{author.name}}</td>
+                        <td> <img
+                                [src]="validImageUrl(author.photo) ? author.photo : 'assets/images/image-not-found.png' "
+                                alt=""> </td>
+                        <td>
+                            <button type="button" (click)="setFormUpdate(author.id)"
+                                class="button button-alert btn-medium"><i class="fas fa-edit"></i>
+                                Editar</button>
+                            <button type="button" class="button button-danger btn-medium"><i class="fas fa-trash"></i>
+                                Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table__pagination">
+                <button *ngFor="let n of numberPages" (click)="getAllAuthors(10,n)" class="table__pagination-number"
+                    [ngClass]="{ 'table__pagination-active':  n === pageActive }">{{n}}</button>
+            </div>
         </div>
     </div>
 </div>

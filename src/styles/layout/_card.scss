@@ -1,5 +1,4 @@
 .card {
-  height: max-content;
   border: 1px solid $skyblue;
   margin: 10px;
   border-radius: 5px;
@@ -18,5 +17,9 @@
 
   &__body {
     padding: 5px 10px;
+    @include modified-content(phone) {
+      width: 310px;
+      overflow-x: scroll;
+    }
   }
 }

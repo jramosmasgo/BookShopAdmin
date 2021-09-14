@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
 
-  &__lista {
-    grid-column: 6/11;
+  &__list {
+    grid-column: 5/11;
+    height: min-content;
   }
 
   &__form {
-    grid-column: 1/6;
+    grid-column: 1/5;
+    height: max-content;
   }
 }

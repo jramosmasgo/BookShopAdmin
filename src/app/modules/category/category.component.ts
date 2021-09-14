@@ -22,6 +22,7 @@ export class CategoryComponent implements OnInit {
   category: Category = {} as Category;
   categoryUpdate!: Category;
   editCategory: boolean = false;
+  loadCategories: boolean = false;
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -48,17 +49,22 @@ export class CategoryComponent implements OnInit {
 
   // Obtener lista de todas las categorias 
   getAllCategories(): void {
+    this.loadCategories = true;
     this.categoryService.getAllCategories().subscribe(res => {
       this.categories = res;
+    }, (err) => {
+      console.log(err)
+    }, () => {
+      this.loadCategories = false;
     })
   }
 
-  // Enviar datos para la actualizacion de la categoria
+  // Actualizacion de la categoria
   updateCategory(): void {
     this.categoryUpdate = { ...this.categoryUpdate, name: this.formCreateCategory.controls.name.value };
     this.categoryService.updateCategory(this.categoryUpdate)
       .subscribe(res => {
-        console.log(res)
+        this.getAllCategories();
         this.setFormCreate();
       })
   }
@@ -67,11 +73,11 @@ export class CategoryComponent implements OnInit {
   deleteCategory(categorytoDelete: Category): void {
     this.categoryService.deleteCategory(categorytoDelete)
       .subscribe(res => {
-        console.log(res)
+        this.getAllCategories();
       })
   }
 
-  // Enviar datos para el guardado de la categoria 
+  // Guardado de la categoria 
   submitForm(): void {
     this.category = { ...this.formCreateCategory.value, order: 0 };
     this.categoryService.createCategory(this.category)
@@ -79,5 +85,4 @@ export class CategoryComponent implements OnInit {
         this.getAllCategories();
       });
   }
-
 }
