@@ -11,6 +11,7 @@ import { CategoryService } from '../core/services/category.service';
 import { ModulesComponent } from './modules.component';
 import { SharedModule } from '../shared/shared.module';
 import { JwtInterceptor } from '../core/interceptors/jwt.interceptor';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { JwtInterceptor } from '../core/interceptors/jwt.interceptor';
       multi: true
     }
   ],
-  declarations: [CategoryComponent, BookComponent, AuthorComponent, HomeComponent, ModulesComponent],
+  declarations: [CategoryComponent, BookComponent, AuthorComponent, HomeComponent, ModulesComponent, RegisterComponent],
 })
 
 export class ModulesModule { }

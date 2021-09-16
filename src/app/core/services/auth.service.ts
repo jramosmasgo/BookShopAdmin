@@ -13,7 +13,7 @@ export class AuthService {
     constructor(private httpClient: HttpClient) { }
 
     // urlService: string = `${environment.urlServie}account`;
-    urlService: string = 'http://elvirrey.somee.com/api/Account';
+    urlService: string = 'http://elvirreytest.somee.com/api/Account';
 
     login(credentials: Login): Observable<IResponseServer<UserLogin>> {
         const uri = `${this.urlService}/authenticate`;
