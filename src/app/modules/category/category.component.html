@@ -49,15 +49,15 @@
                         </p>
                     </div>
                     <div class="form__buttons">
-                        <button *ngIf="!editCategory" type="submit" class="button button-primary form__buttons-right"><i
-                                class="far fa-save"></i>
-                            Guardar</button>
+                        <button [disabled]="loading" *ngIf="!editCategory" type="submit"
+                            class="button button-primary form__buttons-right"><i class="far fa-save"></i>
+                            {{ !loading? 'Guardar' :'Espere ...' }}</button>
                         <button *ngIf="editCategory" (click)="setFormCreate()"
                             class="button button-danger form__buttons-center"><i class="fas fa-times-circle"></i>
                             Cancelar</button>
-                        <button type="button" (click)="updateCategory()" *ngIf="editCategory"
+                        <button [disabled]="loading" type="button" (click)="updateCategory()" *ngIf="editCategory"
                             class="button button-alert form__buttons-right"><i class="fas fa-exclamation-triangle"></i>
-                            Actualizar</button>
+                            {{ !loading? 'Guardar' :'Espere ...' }}</button>
                     </div>
                 </form>
             </div>

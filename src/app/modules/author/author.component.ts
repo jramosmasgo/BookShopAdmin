@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, Renderer2 } from '@angular/co
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorService } from 'src/app/core/services/author.service';
 import { FileService } from 'src/app/core/services/file.service';
+import { Alerts } from 'src/app/shared/helper/alerts';
 import { Validatedata } from 'src/app/shared/helper/validate-data';
 import { ValidateUrl } from 'src/app/shared/helper/validate-url';
 import { AuthorGetAll } from 'src/app/shared/models/author/author-getAll';
@@ -29,6 +30,8 @@ export class AuthorComponent implements OnInit {
   pageActive: number = 1;
   update: boolean = false;
   authorUpdate: AuthorGetById = {} as AuthorGetById;
+  alerts: Alerts = new Alerts();
+  loading: boolean = false;
 
   // validar imagen
   validImageUrl(url: string): boolean {
@@ -84,6 +87,12 @@ export class AuthorComponent implements OnInit {
       });
   }
 
+  setFormCreate(): void {
+    this.update = false;
+    this.formCreateAuthor.reset();
+    this.photoUpload = '';
+  }
+
   // Agregar Imagen a Interface
   convertImage(event: any): void {
     const file = event.target.files[0];
@@ -108,26 +117,52 @@ export class AuthorComponent implements OnInit {
 
   // Actualizar informacion del autor
   updateAuthor() {
+
+    if (!this.formCreateAuthor.valid) return this.alerts.ShowError('El formulario no esta completo');
+    this.loading = true;
+
     this.authorUpdate = {
       ...this.authorUpdate,
       name: this.formCreateAuthor.controls.name.value,
       bibliography: this.formCreateAuthor.controls.bibliography.value,
       gender: this.formCreateAuthor.controls.gender.value,
-      dateBirth: this.formCreateAuthor.controls.datebirth.value
+      dateBirth: this.formCreateAuthor.controls.datebirth.value,
+      photo: this.photoUpload
     };
 
     this.authorService.updateAuthor(this.authorUpdate)
       .subscribe(res => {
-        console.log(res);
-      })
+        this.getAllAuthors();
+        this.alerts.ShowSucces('El autor ha sido Actualizado');
+        this.formCreateAuthor.reset();
+      }, (err) => {
+        console.log(err);
+        this.alerts.ShowError('Ha ocurrido un error');
+      }, () => {
+        this.loading = false;
+        this.photoUpload = '';
+      });
   }
 
   // Guardar datos del Autor 
   submitForm() {
+    if (!this.formCreateAuthor.valid) return this.alerts.ShowError('El formulario no esta completo');
+
+    this.loading = true;
     this.author = { ...this.formCreateAuthor.value };
     this.author.photo = this.photoUpload;
-    this.authorService.createAuthor(this.author).subscribe(res => {
-      console.log(res)
-    });
+
+    this.authorService.createAuthor(this.author)
+      .subscribe(res => {
+        this.getAllAuthors();
+        this.alerts.ShowSucces('El autor ha sido registrado');
+        this.formCreateAuthor.reset();
+      }, (err) => {
+        console.log(err);
+        this.alerts.ShowError('Ha ocurrido un error');
+      }, () => {
+        this.loading = false;
+        this.photoUpload = '';
+      });
   }
 }

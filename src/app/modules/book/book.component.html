@@ -8,42 +8,95 @@
             <h3>Agregar nuevo libro</h3>
         </div>
         <div class="card-body">
-            <form action="" class="form">
+            <form action="" (ngSubmit)="submitForm()" class="form" [formGroup]="formCreateBook">
                 <div class="input">
                     <label for="" class="input__title">Titulo</label>
-                    <input type="text" class="input__input">
+                    <input formControlName="title" type="text" class="input__input">
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Descripcion</label>
-                    <textarea class="input__input" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea style="height: 80px;" formControlName="description" class="input__input" name=""
+                        id=""></textarea>
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Categoria</label>
-                    <select name="" id="" class="input__input">
+                    <select name="" id="" class="input__input" formControlName="categoryId">
                         <option value="">Seleccione un categoria</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Autor</label>
-                    <input class="input__input" name="" id="" cols="30" rows="10" />
+                    <select name="" id="" class="input__input" formControlName="authorId">
+                        <option value="">Seleccione un author</option>
+                        <option *ngFor="let author of authors" [value]="author.id">{{author.name}}</option>
+                    </select>
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Anio de Publicacion</label>
-                    <input type="date" class="input__input">
+                    <input type="date" class="input__input" formControlName="yearPublish">
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Precio</label>
-                    <input class="input__input" type="text" />
+                    <input class="input__input" type="number" formControlName="price" />
                 </div>
                 <div class="input">
                     <label for="" class="input__title">Numero de paginas</label>
-                    <input class="input__input" type="text" />
+                    <input class="input__input" type="number" formControlName="page" />
                 </div>
+                <div class="input">
+                    <label for="" class="input__title">Stock</label>
+                    <input class="input__input" type="number" formControlName="stock" />
+                </div>
+                <div class="input">
+                    <label for="" class="input__title">Codigo Isbn:</label>
+                    <input class="input__input" type="text" formControlName="isbn" />
+                </div>
+                <input type="file" (change)="convertImage($event)" #inputFile style="display: none;" name="" id="">
                 <div class="form__buttons">
+                    <button *ngIf="photoUpload.length > 0" (click)="showImageUpload()" type="button"
+                        class="button button-primary form__btn-image"><i class="far fa-eye"></i>
+                        Ver Foto
+                        <div class="form__image-float-hide" #imageToUpload>
+                            <img [src]="photoUpload.length == 0 ? 'assets/images/image-not-found.png' : photoUpload"
+                                alt="Imagen de autor">
+                            <button type="button"><i class="fas fa-times"></i></button>
+                        </div>
+                    </button>
+                    <button *ngIf="photoUpload.length > 0" type="button" (click)="photoUpload = ''"
+                        class="button button-danger form__buttons-center"><i class="fas fa-trash"></i>
+                        Remover Foto</button>
+                    <button *ngIf="photoUpload.length == 0" type="button" (click)="inputFile.click()"
+                        class="button button-alert"><i class="fas fa-upload"></i> Subir Foto</button>
                     <button type="submit" class="button button-primary form__buttons-right"><i class="far fa-save"></i>
                         Guardar Datos</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="card author__list">
+        <div class="card__title">
+            <h3>Lista de libros</h3>
+        </div>
+        <div class="card__body">
+            <table class="table">
+                <thead class="table__head">
+                    <tr>
+                        <th>Nro. </th>
+                        <th>Titulo</th>
+                        <th>Publicacion</th>
+                        <th> Foto </th>
+                    </tr>
+                </thead>
+                <tbody class="table__body">
+                    <tr *ngFor="let book of books;let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.yearPublish | date}}</td>
+                        <td> <img [src]="book.photo ? book.photo : 'assets/images/image-not-found.png' " alt=""> </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

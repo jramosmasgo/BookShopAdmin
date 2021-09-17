@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlServie: 'http://elvirreytest.somee.com/api/backoffice/'
 };

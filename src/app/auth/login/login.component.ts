@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   userCredentials: Login = {} as Login;
 
   formLogin: FormGroup = this.formBuilder.group({
-    email: ['jramos@gmail.com', [Validators.required, Validators.maxLength(50)]],
+    email: ['mmiller@gmail.com', [Validators.required, Validators.maxLength(50)]],
     password: ['Sistemas10!', [Validators.required, Validators.maxLength(50)]]
   });
 
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       if (res.data) {
         this.cookieService.set('token', res.data.jwToken);
         this.router.navigate(['/admin', 'categories']);
+        localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
   }

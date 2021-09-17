@@ -61,8 +61,16 @@
                     </div>
                 </div>
                 <div class="form__buttons">
-                    <button type="submit" class="button button-primary form__buttons-right"><i class="far fa-save"></i>
-                        Guardar Datos</button>
+                    <button *ngIf="!update" [disabled]="loading" type="submit"
+                        class="button button-primary form__buttons-right"><i class="far fa-save"></i>
+                        {{loading? 'Espere...' : 'Registrar'}}</button>
+
+                    <button *ngIf="update" (click)="setFormCreate()"
+                        class="button button-danger form__buttons-center"><i class="fas fa-times-circle"></i>
+                        Cancelar</button>
+                    <button [disabled]="loading" type="button" (click)="updateAuthor()" *ngIf="update"
+                        class="button button-alert form__buttons-right"><i class="fas fa-exclamation-triangle"></i>
+                        {{ !loading? 'Guardar' :'Espere ...' }}</button>
                 </div>
             </form>
         </div>
@@ -92,8 +100,8 @@
                             <button type="button" (click)="setFormUpdate(author.id)"
                                 class="button button-alert btn-medium"><i class="fas fa-edit"></i>
                                 Editar</button>
-                            <button type="button" class="button button-danger btn-medium"><i class="fas fa-trash"></i>
-                                Eliminar</button>
+                            <!-- <button type="button" class="button button-danger btn-medium"><i class="fas fa-trash"></i>
+                                Eliminar</button> -->
                         </td>
                     </tr>
                 </tbody>

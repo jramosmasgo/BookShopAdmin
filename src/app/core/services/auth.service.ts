@@ -19,5 +19,4 @@ export class AuthService {
         const uri = `${this.urlService}/authenticate`;
         return this.httpClient.post<IResponseServer<UserLogin>>(uri, credentials);
     }
-
 }

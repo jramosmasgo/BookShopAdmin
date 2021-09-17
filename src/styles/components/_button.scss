@@ -6,6 +6,11 @@
   cursor: pointer;
   border: none;
 
+  &:disabled {
+    background: silver;
+    cursor: not-allowed;
+  }
+
   &-primary {
     background: $primary;
     color: white;
